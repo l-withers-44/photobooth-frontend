@@ -13,6 +13,7 @@
       emit-value
       @add="(details) => addSelected(details)"
       @remove="(details) => removeSelected(details)"
+      filled
     >
     </q-select>
   </control-wrapper>

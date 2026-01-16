@@ -11,6 +11,7 @@
       @update:model-value="onChange"
       @focus="isFocused = true"
       @blur="isFocused = false"
+      filled
     >
     </q-select>
   </control-wrapper>

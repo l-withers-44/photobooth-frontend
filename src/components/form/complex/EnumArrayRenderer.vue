@@ -11,6 +11,7 @@
     use-chips
     @add="(details) => addSelected(details.value)"
     @remove="(details) => removeSelected(details.value)"
+    filled
   >
   </q-select>
 </template>
