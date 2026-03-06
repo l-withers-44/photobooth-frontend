@@ -51,7 +51,7 @@
               configurationStore.configuration.uisettings.gallery_show_shareprint && configurationStore.configuration.share.sharing_enabled
             "
             :share-buttons="shareButtons"
-            :show-delete="props.itemPresenterMode || configurationStore.configuration.uisettings.gallery_show_delete"
+            :show-delete="configurationStore.configuration.uisettings.gallery_show_delete"
             :show-download="configurationStore.configuration.uisettings.gallery_show_download"
             :image_number="currentMediaitemNumber"
             :images_total="mediacollectionStore.collection_number_of_items"

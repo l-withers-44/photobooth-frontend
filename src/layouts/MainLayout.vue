@@ -3,8 +3,8 @@
     <q-page-container>
       <router-view />
 
-      <!-- in main layout (main app) always show the back button-->
-      <ReturnButton v-if="isSubPage" @trigger-return="$router.back()"></ReturnButton>
+      <!-- in main layout (main app) never show the back button-->
+      <!--ReturnButton v-if="isSubPage" @trigger-return="$router.back()"></ReturnButton-->
 
       <!-- go back to index after inactivity. matched[0] is / or /standalone so always the parent most of the current entry path -->
       <RouteAfterTimeout
@@ -35,7 +35,7 @@ import { useConfigurationStore } from '../stores/configuration-store'
 import { useRouter, useRoute } from 'vue-router'
 import { onMounted, onUnmounted, computed } from 'vue'
 import { remoteProcedureCall } from '../util/fetch_api.js'
-import ReturnButton from '../components/ReturnButton.vue'
+//import ReturnButton from '../components/ReturnButton.vue'
 import RouteAfterTimeout from 'src/components/RouteAfterTimeout.vue'
 import { useMediacollectionStore } from '../stores/mediacollection-store'
 
@@ -79,12 +79,16 @@ const keyUpHandler = (e: KeyboardEvent) => {
   })
   configurationStore.configuration.actions.collage.forEach((action_config, index: number) => {
     if (action_config.trigger.keyboard_trigger.keycode == e.key) {
-      remoteProcedureCall(`/api/actions/collage/${index}`)
-      return
+      if (!route.path.includes("itempresenter")){
+        console.log("PHOTOGRAPHING")
+        remoteProcedureCall(`/api/actions/collage/${index}`)
+        return
+      }
     }
   })
   configurationStore.configuration.actions.animation.forEach((action_config, index: number) => {
     if (action_config.trigger.keyboard_trigger.keycode == e.key) {
+
       remoteProcedureCall(`/api/actions/animation/${index}`)
       return
     }
@@ -103,8 +107,11 @@ const keyUpHandler = (e: KeyboardEvent) => {
   })
   configurationStore.configuration.share.actions.forEach((action_config, index: number) => {
     if (action_config.trigger.keyboard_trigger.keycode == e.key) {
-      remoteProcedureCall(`/api/share/actions/latest/${index}`, 'POST')
-      return
+      if (route.path.includes("itempresenter")){
+        console.log("PRINTING")
+        remoteProcedureCall(`/api/share/actions/latest/${index}`, 'POST')
+        return
+      }
     }
   })
 }
