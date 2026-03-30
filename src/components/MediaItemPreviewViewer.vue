@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isImage(item.unprocessed)" class="full-height full-width">
+  <div v-if="isImage(item.unprocessed)" class="full-height justify-center items-center" style="padding-top: 40px;">
     <q-img
       :draggable="false"
       class="full-height"
@@ -7,8 +7,11 @@
       loading="eager"
       loading-show-delay="800"
       no-transition
+      style="max-width: 900px;"
       :src="`/media/preview/${item.id}?${item.updated_at}`"
     />
+    <!--eslint-disable-next-line @intlify/vue-i18n/no-raw-text-->
+    <div class="text-h1 text-weight-bold text-center text-black" style="max-width: 800px; padding-right: 150px; max-height: 100px; right: 00pt; top: 200pt; position: fixed; font-family: Apple">Press the button to print the Photo</div>
   </div>
   <div v-else-if="isVideo(item.unprocessed)" class="full-height">
     <video

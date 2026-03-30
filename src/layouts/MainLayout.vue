@@ -79,10 +79,13 @@ const keyUpHandler = (e: KeyboardEvent) => {
   })
   configurationStore.configuration.actions.collage.forEach((action_config, index: number) => {
     if (action_config.trigger.keyboard_trigger.keycode == e.key) {
-      if (!route.path.includes("itempresenter")){
-        console.log("PHOTOGRAPHING")
+      console.log(route.path)
+      if (!route.path.includes("itempresenter") && !route.path.includes("slideshow")){
         remoteProcedureCall(`/api/actions/collage/${index}`)
         return
+      }
+      else if(route.path.includes("slideshow")){
+        router.push({ path: '/' })
       }
     }
   })
@@ -108,7 +111,6 @@ const keyUpHandler = (e: KeyboardEvent) => {
   configurationStore.configuration.share.actions.forEach((action_config, index: number) => {
     if (action_config.trigger.keyboard_trigger.keycode == e.key) {
       if (route.path.includes("itempresenter")){
-        console.log("PRINTING")
         remoteProcedureCall(`/api/share/actions/latest/${index}`, 'POST')
         return
       }

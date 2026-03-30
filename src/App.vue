@@ -145,3 +145,14 @@ const initSseClient = () => {
   })
 }
 </script>
+<style>
+@font-face {
+  font-family: 'Apple';   
+  src: url('./assets/Apple Chancery.ttf');  
+
+}
+
+#app {
+  font-family: 'Apple', Helvetica, Arial, sans-serif;
+}
+</style>

@@ -1,17 +1,16 @@
 <template>
-  <q-page id="slideshow-page" class="row justify-center items-center flex flex-center absolute-full">
-    <div v-if="mediacollectionStore.collection_number_of_items > 0" class="full-height full-width">
-      <MediaItemPreviewViewer :item="mediacollectionStore.collection[currentMediaitemIndex]" />
+  <q-page id="slideshow-page" class="justify-center items-center flex flex-center absolute-full" style="background-color: #e4e8e6; flex-direction: column;">
+    <!-- eslint-disable-next-line -->
+    <div class="text-h1 text-weight-bold text-center text-black" style="font-family: Apple">PHOTOBOOTH</div>
+    <div>
+      <img src="icons\wedding-logo.png" style="max-height: 600px" />
     </div>
-    <div v-else class="full-height"><ItemNotAvailableError /></div>
   </q-page>
 </template>
 
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref } from 'vue'
 import { useMediacollectionStore } from '../stores/mediacollection-store'
-import { default as MediaItemPreviewViewer } from '../components/MediaItemPreviewViewer.vue'
-import ItemNotAvailableError from '../components/ItemNotAvailableError.vue'
 
 const mediacollectionStore = useMediacollectionStore()
 const nextMediaitemTimeout = 5_000

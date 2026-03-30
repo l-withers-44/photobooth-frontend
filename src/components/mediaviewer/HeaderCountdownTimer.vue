@@ -6,7 +6,8 @@
     class="absolute"
     :value="remainingSeconds / props.duration"
     animation-speed="200"
-    color="grey"
+    color="secondary"
+    style="height: 40px"
   />
 </template>
 
